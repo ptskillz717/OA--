@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olyvia’s A1 Cleaning | Top Rated Cleaning in Bristol, VA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* --- Modern CSS Variables --- */
+        :root {
+            --navy-900: #050b14;
+            --navy-800: #0a1628;
+            --navy-700: #152a4a;
+            --gold: #d4af37;
+            --green-cta: #2e7d32;
+            --white: #ffffff;
+            --text-muted: #a0aec0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* --- Base & Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--white);
+            background-color: var(--navy-900);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade { animation: fadeInUp 1s ease forwards; }
+
+        /* --- Video Background --- */
+        .video-background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            overflow: hidden;
+            background-color: var(--navy-900);
+        }
+        .video-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Dark overlay to make the text pop while the video plays */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(5, 11, 20, 0.95) 0%, rgba(21, 42, 74, 0.8) 100%);
+            z-index: 1;
+        }
+
+        /* --- Layout Containers --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+        section { padding: 100px 0; }
+
+        /* --- Sticky Navigation --- */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(10, 22, 40, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 0;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--gold); }
+        .nav-btn {
+            background: var(--gold); color: var(--navy-900); font-weight: 700;
+            padding: 10px 24px; border-radius: 50px; text-decoration: none;
+            transition: var(--transition);
+        }
+        .nav-btn:hover { background: var(--white); transform: translateY(-2px); }
+
+        /* --- Premium Hero Section --- */
+        .hero {
+            position: relative;
+            padding: 200px 0 120px;
+            overflow: hidden;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .badge {
+            display: inline-block; padding: 6px 16px; background: rgba(212, 175, 55, 0.1);
+            color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .hero h1 { font-size: 5rem; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1.5px; }
+        .hero h1 i { color: var(--gold); font-style: italic; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
+        
+        .primary-btn {
+            display: inline-block; padding: 18px 40px; background: var(--green-cta);
+            color: var(--white); font-weight: 600; font-size: 1.1rem; border-radius: 50px;
+            text-decoration: none; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .primary-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(46, 125, 50, 0.5); background: #388e3c; }
+
+        /* --- Trust Banner --- */
+        .trust-banner {
+            background: rgba(10, 22, 40, 0.8); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px); padding: 30px 0;
+            position: relative; z-index: 10;
+        }
+        .trust-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .trust-item { display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 1.1rem; }
+        .trust-item span { color: var(--gold); font-size: 1.5rem; }
+
+        /* --- Services Section --- */
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 16px; }
+        .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .service-card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 20px; transition: var(--transition);
+            position: relative; overflow: hidden;
+        }
+        .service-card:hover {
+            background: rgba(255,255,255,0.08); transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .service-icon { font-size: 2.5rem; margin-bottom: 20px; display: inline-block; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- Split Content Section (Why Choose Us) --- */
+        .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; background: rgba(10, 22, 40, 0.8); backdrop-filter: blur(10px); border-radius: 30px; padding: 60px; margin: 40px 0; border: 1px solid rgba(255,255,255,0.05); }
+        .split-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .split-content p { color: var(--text-muted); margin-bottom: 20px; font-size: 1.1rem; }
+        .split-content ul { list-style: none; margin-top: 24px; }
+        .split-content li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .split-content li::before { content: '✓'; color: var(--gold); font-weight: bold; }
+        .split-image img { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+        /* --- Gallery Section --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .gallery-item { border-radius: 16px; overflow: hidden; position: relative; aspect-ratio: 4/3; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            opacity: 0; transition: var(--transition); display: flex; align-items: flex-end; padding: 24px;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay span { color: var(--white); font-weight: 600; font-size: 1.1rem; }
+
+        /* --- Footer CTA --- */
+        footer { background: rgba(5, 11, 20, 0.9); backdrop-filter: blur(10px); padding: 80px 0 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 10; }
+        .footer-cta { margin-bottom: 60px; }
+        .footer-cta h2 { font-size: 3.5rem; margin-bottom: 20px; }
+        .phone-huge { font-size: 2.5rem; font-weight: 700; color: var(--gold); margin: 30px 0; display: block; text-decoration: none; }
+        .footer-bottom { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 992px) {
+            .split-section { grid-template-columns: 1fr; padding: 40px 24px; }
+            .hero h1 { font-size: 3.5rem; }
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 150px 0 80px; text-align: center; }
+            .hero-content { margin: 0 auto; }
+            .trust-grid { flex-direction: column; align-items: center; text-align: center; }
+            .section-header h2 { font-size: 2.2rem; }
+            .footer-cta h2 { font-size: 2.5rem; }
+            .phone-huge { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-background-container">
+        <video autoplay loop muted playsinline class="video-bg">
+            <source src="http://googleusercontent.com/generated_video_content/12126995720089476975" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">Olyvia's<span>A1</span></a>
+            <a href="tel:+12764942367" class="nav-btn">Call Now</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content animate-fade">
+                <span class="badge">Serving Bristol & Within 50 Miles</span>
+                <h1>Immaculate spaces.<br><i>Zero</i> hassle.</h1>
+                <p>No time for cleaning? No problem. Take back your day and leave the deep cleaning, carpet extraction, and commercial upkeep to Bristol's trusted professionals.</p>
+                <a href="tel:+12764942367" class="primary-btn">Get Your Free Estimate</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="trust-banner animate-fade" style="animation-delay: 0.2s;">
+        <div class="container trust-grid">
+            <div class="trust-item"><span>★</span> Top Rated Local Service</div>
+            <div class="trust-item"><span>✓</span> Residential & Commercial</div>
+            <div class="trust-item"><span>💧</span> Advanced Hot Water Extraction</div>
+            <div class="trust-item"><span>🚗</span> We Travel to You</div>
+        </div>
+    </div>
+
+    <section class="container">
+        <div class="section-header">
+            <h2>Our Cleaning Specialties</h2>
+            <p>Tailored solutions for your home and business.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Commercial & Office</h3>
+                <p>Professional upkeep for a productive workspace, ensuring your clients always get the right first impression.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🍽️</div>
+                <h3>Restaurant Cleaning</h3>
+                <p>Deep sanitation for dining areas and high-traffic zones, maintaining the highest standards of cleanliness.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🫧</div>
+                <h3>Carpet Extraction</h3>
+                <p>We don't just shampoo; we extract. Removing deep stains and allergens with industrial hot-water technology.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏡</div>
+                <h3>Apartments & Condos</h3>
+                <p>Thorough, detail-oriented cleaning tailored to living spaces of all sizes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌷</div>
+                <h3>Spring Deep Cleaning</h3>
+                <p>A total top-to-bottom refresh for your property to reset your space for the season.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📅</div>
+                <h3>Routine Maintenance</h3>
+                <p>Reliable weekly or biweekly cleaning schedules so you never have to worry about the mess.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="split-section">
+            <div class="split-content">
+                <h2>The Deep Clean Difference</h2>
+                <p>Standard vacuuming simply can't reach the ground-in dirt, allergens, and stubborn odors trapped deep within your carpet fibers. We use advanced, industrial-grade equipment to revive your floors.</p>
+                <ul>
+                    <li>High-heat technology kills dust mites & bacteria</li>
+                    <li>Pulls out 95% of moisture for rapid drying</li>
+                    <li>Eradicates stubborn stains and pet odors</li>
+                    <li>Extends the life of your carpets</li>
+                </ul>
+            </div>
+            <div class="split-image">
+                <img src="images/0030c50d-43ee-4e7e-87e9-a9473d7e46db-1_all_1750.jpg" alt="Commercial carpet extraction machine">
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="section-header">
+            <h2>Our Work Speaks for Itself</h2>
+            <p>Real results from our hot-water extraction process.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/FB_IMG_1772409187567.jpg" alt="Deep Cleaning Example">
+                <div class="gallery-overlay"><span>Commercial Space</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_0097.HEIC" alt="Carpet Extraction Process">
+                <div class="gallery-overlay"><span>Stain Removal</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_0098.HEIC" alt="Commercial Cleaning">
+                <div class="gallery-overlay"><span>Hot Water Extraction</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_0099.HEIC" alt="Residential Deep Clean">
+                <div class="gallery-overlay"><span>Residential Carpet</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_0100.HEIC" alt="Carpet Shampooing">
+                <div class="gallery-overlay"><span>Office Upkeep</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/IMG_0101.HEIC" alt="Spotless Results">
+                <div class="gallery-overlay"><span>Deep Clean Restore</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Ready for a spotless space?</h2>
+                <p style="color: var(--text-muted); font-size: 1.2rem;">Based in Bristol, VA. We proudly travel up to 50 miles.</p>
+                <a href="tel:+12764942367" class="phone-huge">276-494-2367</a>
+                <a href="tel:+12764942367" class="primary-btn">Book Your Cleaning</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Olyvia's A1 Cleaning. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
